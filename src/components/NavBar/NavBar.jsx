@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-//import CartWiget from '../CartWiget/CartWiget'
+import CartWiget from '../CartWiget/CartWiget'
 
 
 const NavBar = () => {
@@ -19,7 +19,7 @@ const NavBar = () => {
           </Nav>
           <Nav>
             <Nav.Link eventKey={2} href="#memes">
-              Cartwidget
+              <CartWiget />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
