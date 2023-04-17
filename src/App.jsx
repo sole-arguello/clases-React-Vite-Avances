@@ -3,10 +3,7 @@
 //estilos 
 //import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 //librerias 
-
 
 //componentes creados por mi 
 import NavBar from './components/NavBar/NavBar';
@@ -18,13 +15,13 @@ import ItemDitailContainer from './components/ItemDitailContainer/ItemDitailCont
 
 function App() {
   return ( 
-    <div className="App">
+    <>
       <NavBar />
       <Titulo  titulo='Titulo' subTitulo='SubTitulo'/>
       <Formulario />
       <ItemsContainer greeting='Bienvenidos'/>
       <ItemDitailContainer greeting='Un producto jarcodeado' />
-    </div>
+    </>
   );
 
 }

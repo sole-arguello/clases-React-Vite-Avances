@@ -1,19 +1,19 @@
-import React from 'react'
-import Titulo from '../Titulo/Titulo'
+import { useState } from "react"
+import Form from "./Form"
+import { formWhitValidation } from "./formWhitValidation"
 
+const FormWhitValidation = formWhitValidation ( Form )
 
-function Formulario() {
-    let titulo= 'Formulario'
-    let subTitulo= 'Complete el form '
-  return (
-    <section>
-        <Titulo titulo={titulo} subTitulo={subTitulo}/>
-        <form>
-            <input  type='text' name='name' placeholder='Ingrese su nombre'/>
-            <input  type='text' name='email' placeholder='Ingrese su email'/>
-        </form>
-    </section>
-  )
+export function Formulario () {
+    const [formData, setFormData] = useState({  name: '' , email: ''})
+
+    const handleOnChange = (event) => {
+      setFormData({ ...formData, [ event.target.name ]: event.target.value })
+    }
+
+     return (
+      <FormWhitValidation formData={formData} handleOnChange={handleOnChange}/>
+     )
 }
 
 export default Formulario
