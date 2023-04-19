@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { getProductoById } from "../../utils/mFetch";
 import ItemDitail from '../ItemDetail/ItemDitail'
 
+
 function ItemDitailContainer( {greeting} ) {
+
+    const { pid } = useParams()
+    console.log(pid)
 
     const [ producto, setProducto ] = useState(null)
     const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
       setTimeout( () => {
-        getProductoById(1)//producto jarcodeado el 1 es el id del primer producto
+        getProductoById(pid)//producto jarcodeado el 1 es el id del primer producto
         .then( ( resultado ) => {
             setProducto(resultado)
             console.log(producto)

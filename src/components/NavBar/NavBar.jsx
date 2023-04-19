@@ -1,9 +1,11 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Link, NavLink } from 'react-router-dom'
 import CartWiget from '../CartWiget/CartWiget'
 
 
 const NavBar = () => {
+  
   return (
     <Navbar collapseOnSelect expand="lg" bg="warning" variant="">
       <Container >
@@ -13,14 +15,18 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className='px-5' id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link className='px-5' href="#features">Conjuntos</Nav.Link>
-            <Nav.Link className='px-5' href="#pricing">Top</Nav.Link>
-            <Nav.Link className='px-5' href="#pricing">Bombis</Nav.Link>
+            <Link className='' to='/' >Inicio</Link>
+            <NavLink className='px-5' to='/categoria/Conjunto'>Conjuntos</NavLink>
+            <NavLink className='px-5' to='/categoria/Top'>Top</NavLink>
+            <NavLink className='px-5' to='/categoria/Bombis'>Bombis</NavLink>
           </Nav>
           <Nav>
-            <Nav.Link eventKey={2} href="#memes">
+            {/* <Nav.Link eventKey={2} href="#memes">
               <CartWiget />
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link className='' to='/cartEjemplo'>
+              <CartWiget/>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

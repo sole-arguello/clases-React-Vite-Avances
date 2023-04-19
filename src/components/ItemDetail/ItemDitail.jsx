@@ -1,9 +1,13 @@
 import React from 'react'
 import { Card, Container } from 'react-bootstrap'
 import ItemCount from '../ItemCount/ItemCount'
+import { useParams } from 'react-router-dom'
 
 
 function ItemDitail({id, img, titulo, precio}) {
+
+  // const { pid } = useParams()
+  // console.log(pid)
   return (
     <Card className='container d-flex flex-md-row py-3'>
         

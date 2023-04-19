@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card, CardGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function Item( {id, titulo, img, precio} ) {
   return (
@@ -12,7 +13,9 @@ function Item( {id, titulo, img, precio} ) {
               <Card.Text>Precio: ${precio}</Card.Text>
             </Card.Body>
             <Card.Footer className="card-footer">
-              <Button variant="outline-warning text-secondary">Ver Detalle</Button>
+              <Link to={`/detail/${id}`}>
+                <Button variant="outline-warning text-secondary">Ver Detalle</Button>
+              </Link>
             </Card.Footer>
         </Card>
     </CardGroup>
