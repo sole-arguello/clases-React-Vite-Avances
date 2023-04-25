@@ -21,6 +21,7 @@ import CartEjemplo from './components/CartEjemplo/CartEjemplo';
 function App() {
   return ( 
     
+    
     <Router>
       <NavBar />
       <Routes >

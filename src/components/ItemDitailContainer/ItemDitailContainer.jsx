@@ -7,17 +7,17 @@ import ItemDitail from '../ItemDetail/ItemDitail'
 function ItemDitailContainer( {greeting} ) {
 
     const { pid } = useParams()
-    console.log(pid)
+    //console.log(pid)
 
     const [ producto, setProducto ] = useState(null)
     const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
       setTimeout( () => {
-        getProductoById(pid)//producto jarcodeado el 1 es el id del primer producto
+        getProductoById(pid)
         .then( ( resultado ) => {
             setProducto(resultado)
-            console.log(producto)
+            //console.log(producto)
         })
         .catch( (err) => console.log(err))
         .finally(() => setIsLoading(false))
