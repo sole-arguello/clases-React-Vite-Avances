@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { useCartContext } from '../../context/CartContext'
+
+
 import { Card, Container } from 'react-bootstrap'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link, useParams } from 'react-router-dom'
+
 
 
 function ItemDitail({id, img, titulo, precio}) {
@@ -10,10 +14,14 @@ function ItemDitail({id, img, titulo, precio}) {
   // console.log(pid)
   
   const [isCant, setIsCant] = useState(true)
-  const handleOnAdd = () => {
-    //console.log('Cantidad agregada ', cantidad)
+  const { addToCart, cartList} = useCartContext()  
+
+  const handleOnAdd = (cantidad) => {
+    addToCart({id, img, titulo, precio},cantidad)
     setIsCant(false)
+    //console.log('Cantidad agregada ', cantidad)
   }
+  console.log(cartList)
   return (
     <Card className='container d-flex flex-md-row py-3'>
         
@@ -27,7 +35,7 @@ function ItemDitail({id, img, titulo, precio}) {
                 architecto tempora odit?
             </Card.Text>
 
-            {
+            {//valido que si hay cantidad 
             isCant
             ? <ItemCount initial={1} stock={10} onAdd={handleOnAdd}/> 
             :<>

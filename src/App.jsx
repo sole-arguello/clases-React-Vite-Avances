@@ -16,30 +16,30 @@ import Formulario from './components/Formulario/Formulario';
 import ItemsListContainer from './components/ItemsListContainer/ItemsListContainer';
 import ItemDitailContainer from './components/ItemDitailContainer/ItemDitailContainer';
 import CartEjemplo from './components/CartEjemplo/CartEjemplo';
+import { CartContextProvider } from './context/CartContext';
 
 
 function App() {
   return ( 
     
-    
-    <Router>
-      <NavBar />
-      <Routes >
-        <Route path='/' element={<ItemsListContainer greeting='Bienvenidos'/>} />
-        <Route path='/categoria/:cid' element={<ItemsListContainer greeting='Categorias'/>} />
+    <CartContextProvider>
+      <Router>
+        <NavBar />
+        <Routes >
+          <Route path='/' element={<ItemsListContainer greeting='Bienvenidos'/>} />
+          <Route path='/categoria/:cid' element={<ItemsListContainer greeting='Categorias'/>} />
 
-        <Route path='/detail/:pid' element={<ItemDitailContainer greeting='Un producto jarcodeado' />} />
-        <Route path='/cartEjemplo' element={<CartEjemplo/>} />
+          <Route path='/detail/:pid' element={<ItemDitailContainer greeting='Un producto jarcodeado' />} />
+          <Route path='/cartEjemplo' element={<CartEjemplo/>} />
+          
+          <Route path='*' element= { <Navigate to='/' />} />
+        </Routes>
         
-        <Route path='*' element= { <Navigate to='/' />} />
-      </Routes>
+        {/* <Titulo  titulo='Titulo' subTitulo='SubTitulo'/>
+        <Formulario /> */}
       
-      {/* <Titulo  titulo='Titulo' subTitulo='SubTitulo'/>
-      <Formulario /> */}
-    
-    </Router>
-
-
+      </Router>
+    </CartContextProvider>
     
   );
 
