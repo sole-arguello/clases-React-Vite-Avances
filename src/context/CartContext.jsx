@@ -38,9 +38,9 @@ export const CartContextProvider = ({children}) => {
         setCartList([])
     }
 
-    const isInCart = (itemId) => {
-        return cartList.some(prod => prod.id === itemId)
-    }
+    // const isInCart = (itemId) => {
+    //     return cartList.some(prod => prod.id === itemId)
+    // }
 
     //cantidad total
     //precio total 
@@ -49,7 +49,7 @@ export const CartContextProvider = ({children}) => {
         <CartContext.Provider value={{
            cartList,
            addToCart,
-           vaciarCarrito, 
+           //vaciarCarrito, 
         //    removeItem,
 
         }}>

@@ -9,8 +9,8 @@ function CartEjemplo() {
     <div>
       {cartList.map(prod => (
         <div>
-      <img src={prod.img}/>
-      <button >X</button>
+          <img className='w-25' src={prod.img}/>
+          <button >X</button>
         </div>
 
     ))}
