@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Button, Card, CardGroup } from 'react-bootstrap'
+import { getDoc, doc, getFirestore, collection, getDocs, query, where } from 'firebase/firestore'
 import { getProductos } from "../../utils/mFetch";
 import { TextComponent1 } from "../ComponentesCondicionales/TextComponent1";
 import { TextComponent2 } from "../ComponentesCondicionales/TextComponent2";
@@ -35,13 +36,35 @@ function ItemsListContainer({ greeting }) {
 
     useEffect(() => {
         setTimeout(() => {
-         getProductos()
-            .then((resultado) => {
-                setProductos(resultado)
-            })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false));
+        //  getProductos()
+        //     .then((resultado) => {
+        //         setProductos(resultado)
+        //     })
+        //     .catch((error) => console.log(error))
+        //     .finally(() => setIsLoading(false));
+
+          //clase 12 remplazo el mock 
+          const dbFirestore = getFirestore()//apunto a firestore dentro de firestore
+          const queryCollection = collection(dbFirestore, 'productos')
+          //traigo todos los productos
+          getDocs(queryCollection)                                    //al id lo obtengo por asignacion
+            .then(resp => setProductos(resp.docs.map( producto => ( { id: producto.id, ...producto.data() } ))))
+            .catch(err => console.log(err))
+            .finally( () => setIsLoading(false))
         }, 1000);
+    }, [])
+
+    //traer por filtrado
+    useEffect( () =>{
+      const dbFirestore = getFirestore()//siempre apunto a firestore dentro de firestore
+      const queryCollection = collection(dbFirestore, 'productos')
+
+      const queryCollectionFiltered = query(queryCollection, where('precio', '==', '900'))
+
+      getDocs(queryCollectionFiltered)                                    //al id lo obtengo por asignacion
+        .then(resp => setProductos(resp.docs.map( producto => ( { id: producto.id, ...producto.data() } ))))
+        .catch(err => console.log(err))
+        .finally( () => setIsLoading(false))
     }, [])
 
     //clase 12 simular
@@ -53,7 +76,7 @@ function ItemsListContainer({ greeting }) {
     }
 
     //clase 12 para ver el rendering
-    console.log('ItemListContainer')
+    console.log('ItemListContainer', productos)
     // const handleProductFiltered = ( { filterState, handleFilterChange } ) => (
     //     <Container className=" text-center"> 
     //       <h2>Buscar Producto</h2>

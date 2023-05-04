@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getProductoById } from "../../utils/mFetch";
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import ItemDitail from '../ItemDetail/ItemDitail'
 import Loading from '../Loading/Loading';
 
@@ -16,13 +17,23 @@ function ItemDitailContainer( {greeting} ) {
 
     useEffect(() => {
       setTimeout( () => {
-        getProductoById(pid)
-        .then( ( resultado ) => {
-            setProducto(resultado)
-            //console.log(producto)
-        })
-        .catch( (err) => console.log(err))
-        .finally(() => setIsLoading(false))
+        // getProductoById(pid)
+        // .then( ( resultado ) => {
+        //     setProducto(resultado)
+        //     //console.log(producto)
+        // })
+        // .catch( (err) => console.log(err))
+        // .finally(() => setIsLoading(false))
+        
+        //clase 12 remplazo el mock
+        const dbFirestore = getFirestore()
+        const queryDoc = doc(dbFirestore, 'productos', pid)
+        
+        //traigo un producto por su id
+        getDoc(queryDoc)
+          .then(resp => setProducto(({ id: resp.id, ...resp.data()})))
+          .catch(err => console.log(err))
+          .finally( () => setIsLoading(false))
       }, 2000)  
     }, [])
 

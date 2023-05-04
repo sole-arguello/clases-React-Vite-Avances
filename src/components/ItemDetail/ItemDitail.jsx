@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { useCartContext } from '../../context/CartContext'
-
-
 import { Card, Container } from 'react-bootstrap'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link, useParams } from 'react-router-dom'
