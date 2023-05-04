@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getProductoById } from "../../utils/mFetch";
 import ItemDitail from '../ItemDetail/ItemDitail'
+import Loading from '../Loading/Loading';
+
 
 
 function ItemDitailContainer( {greeting} ) {
@@ -27,7 +29,11 @@ function ItemDitailContainer( {greeting} ) {
   return (
     <div>
         <h1 className='py-5 text-center'>{ greeting }</h1>
-        { isLoading ? <p>Cargando el producto...</p> : <ItemDitail {...producto}/> }
+        { isLoading
+
+        //  ? <p>Cargando el producto...</p> 
+        ? <Loading/>
+        : <ItemDitail {...producto}/> }
     </div>
   )
 }

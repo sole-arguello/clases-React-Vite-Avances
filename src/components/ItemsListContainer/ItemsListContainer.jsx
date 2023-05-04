@@ -1,13 +1,38 @@
 import { useEffect, useState } from "react";
-import { Spinner, Container, Button, Card, CardGroup } from 'react-bootstrap'
+import { Container, Button, Card, CardGroup } from 'react-bootstrap'
 import { getProductos } from "../../utils/mFetch";
+import { TextComponent1 } from "../ComponentesCondicionales/TextComponent1";
+import { TextComponent2 } from "../ComponentesCondicionales/TextComponent2";
+import { TextComponent3 } from "../ComponentesCondicionales/TextComponent3";
+
 import ItemList from "../ItemList/ItemList";
 import Buscador from "../Buscador/Buscador";
+import Loading from "../Loading/Loading";
+import { TextComponent5 } from "../ComponentesCondicionales/TextComponent5";
+import { TextComponent6 } from "../ComponentesCondicionales/TextComponent6";
+import { TextComponent7 } from "../ComponentesCondicionales/TextComponent7";
+import { TextComponent8 } from "../ComponentesCondicionales/TextComponent8";
+
+
+
+// clase 13 
+// const Loading2 = () =>{
+//     useEffect( () =>{
+//       console.log('Acciones loading')
+//       return () => {
+//         console.log('Loading desmontado')
+//       }
+//     })
+//     return <h2>Cargando...</h2>
+//   }
 
 function ItemsListContainer({ greeting }) {
     
     const [productos, setProductos ] = useState([])
+    //clase 12
     const [isLoading, setIsLoading ] = useState(true)
+    const [meGusta, setMeGusta] = useState(true)
+
     useEffect(() => {
         setTimeout(() => {
          getProductos()
@@ -19,6 +44,16 @@ function ItemsListContainer({ greeting }) {
         }, 1000);
     }, [])
 
+    //clase 12 simular
+    const handleMeGusta = () => {
+      setMeGusta(!meGusta)
+    }
+    const agregarProducto = () => {
+      setProductos([...productos, {id: '', categoria: productos.length+1, titulo: 'Nuevo', precio: 3500, cantidad: 100}] )
+    }
+
+    //clase 12 para ver el rendering
+    console.log('ItemListContainer')
     // const handleProductFiltered = ( { filterState, handleFilterChange } ) => (
     //     <Container className=" text-center"> 
     //       <h2>Buscar Producto</h2>
@@ -68,10 +103,26 @@ function ItemsListContainer({ greeting }) {
     // )
     return (
     <>
-      <h1 className="py-5 text-center">{greeting}</h1>
+      <h1 className="py-5 text-center ">{greeting}</h1>
 
       <Container >
-          {isLoading ? <Spinner animation="border" variant="warning" /> : <ItemList productos = {productos}/>}
+        <button className="btn btn-outline-success" onClick={agregarProducto}>Agregar producto</button>
+        <button className="btn btn-success rounded-pill" onClick={handleMeGusta}> Me gusta </button>
+          {isLoading 
+          //clase 13
+          // ? <Loading2 />
+          ? <Loading />
+          : <ItemList productos = {productos}/>}
+
+        {/* ------------clase 13 ------------- */}
+        {/* <TextComponent1/> */}
+        {/* <TextComponent2 /> */}
+         {/* <TextComponent3 /> */}
+         {/* TextComponent4 lo trabaje en itemDitail loading*/}
+         {/* <TextComponent5 /> */}
+         {/* <TextComponent6 /> */}
+         {/* <TextComponent7 /> */}
+         {/* <TextComponent8 /> */}
       </Container>
       {/* <Buscador >
           { handleProductFiltered }

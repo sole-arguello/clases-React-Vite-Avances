@@ -3,6 +3,7 @@ import { Button, Card, CardGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function Item( {id, titulo, img, precio} ) {
+  console.log('Item')
   return (
 
     <CardGroup className='col-lg-3 col-md-6 col-sm-10'>
